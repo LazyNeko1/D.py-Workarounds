@@ -1,0 +1,27 @@
+###PUT UNDER THE ON_MESSAGE EVENT###
+####################################
+
+
+
+class nitro():             
+      async def tier(self=client):
+         try:
+            _gid=message.server.id
+         except AttributeError:
+            return False
+         data=await client.http.request(
+            discord.http.Route(
+            'GET', '/guilds/'+_gid))
+         return data["premium_tier"]
+         
+         
+         
+      async def count(self=client):
+         try:
+            _gid=message.server.id
+         except AttributeError:
+            return False
+         data=await client.http.request(
+            discord.http.Route(
+            'GET', '/guilds/'+_gid))
+         return data["premium_subscription_count"]
