@@ -1,0 +1,14 @@
+##PUT UNDER THE ON_MESSAGE EVENT##
+##################################
+
+
+async def is_nsfw(self=client,channel=message.channel):
+         try:
+            _gid=message.server.id
+         except AttributeError:
+            return False
+         data=await self.http.request(
+            discord.http.Route(
+            'GET', '/guilds/{guild_id}/channels', guild_id=_gid))
+         channeldata= [d for d in data if d['id'] == channel.id][0]
+         return channeldata['nsfw']
