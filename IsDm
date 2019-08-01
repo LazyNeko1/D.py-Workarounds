@@ -1,0 +1,23 @@
+##PUT UNDER ON_MESSAGE EVENT##
+##############################
+
+async def IsDm(self=client,channel=message.channel):
+        try:
+         try:
+            _gid=message.server.id
+         except AttributeError:
+            try:
+                _gid=message.channel.id
+            except AttributeError:
+                return False
+         data=await self.http.request(
+            discord.http.Route(
+            'GET', '/guilds/{guild_id}/channels', guild_id=_gid))
+         channeldata= [d for d in data if d['id'] == channel.id][0]
+         if channeldata['type'] == 1:
+             return True
+         
+         else:
+                 return False
+        except discord.errors.NotFound:
+                return True       
